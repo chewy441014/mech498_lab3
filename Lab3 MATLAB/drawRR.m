@@ -20,6 +20,9 @@ function [ handles ] = drawRR( joint_angles, robot )
 % Create structure of RR robot forward kinematics transforms
 [~,robot_T] = RRFK(joint_angles,robot);
 
+L_1=robot.l_1;
+L_2=robot.l_2;
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot scaling properties
 origin_size = 20;

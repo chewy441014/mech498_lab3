@@ -27,10 +27,10 @@ robot.m_r2 = 2.3; % [kg]
 robot.l_1 = 1; % [m]
 robot.l_2 = 1.41; % [m]
 robot.g = 9.81; % [m/s^2]
-robot.tool = [];
-robot.workspace = [robot.l_1+robot.l_2, -(robot.l_1+robot.l_2), ...
-    robot.l_1+robot.l_2, -(robot.l_1+robot.l_2), ...
-    robot.l_2, -robot.l_2]; % only used to determine size of figure window
+robot.tool = [[1 0 0 robot.l_2; 0 1 0 0; 0 0 1 0;0 0 0 1]];
+robot.workspace = [-(robot.l_1+robot.l_2), robot.l_1+robot.l_2, ...
+    -(robot.l_1+robot.l_2), robot.l_1+robot.l_2, ...
+    -robot.l_2, robot.l_2]; % only used to determine size of figure window
 robot.colors = {[1,0,0],[0,1,0],[0,0,1]};
 
 end
