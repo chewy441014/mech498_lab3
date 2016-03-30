@@ -27,21 +27,26 @@ g=robot.g;
 I1=1/12*m_r1*l_1^2+m_1*(l_1/2)^2
 I2=1/12*m_r2*l_2^2+m_2*(l_2/2)^2
 
-Lc1=(m1+1/2*m_r1)*l_1
+M1=m_1+m_r1
+M2=m2+m_r2
+
+Lc1=((m1+1/2*m_r1)*l_1)/(M1)
+Lc2=((m2+1/2*m_r2)*l_2)/(M2)
+
 
 % Joint Torque Limit
-tau_max = [20]; % [N-m] (Scalar)
+tau_max = 20; % [N-m] (Scalar)
 
 % Time
-dt = []; % [s]
-t_f = []; % [s]
+dt = 0.01; % [s]
+t_f = 10; % [s]
 
 % Initial Conditions
-X_0 = [];
+X_0 = [0; 0];
 
 % Control Gains (Scalar)
-K_p = [];
-K_v = [];
+K_p = 1;
+K_v = 1;
 
 % Numerical Integration
 t = 0:dt:t_f;
@@ -62,8 +67,8 @@ for i = 1:length(t)
     tau(tau<-tau_max) = -tau_max;
     
     % Dynamic Model
-    M = [];
-    C = [];
+    M = [M1*Lc1^2+M2*(l_1+Lc2*cos(X(2)))^2+I1+I2, 0 ; 0, M2*Lc2^2+I2];
+    C = [-2*M2*Lc2*sin(X(2))*(l_1+Lc2*cos((];
     G = [];
 
     X_dot(i,:) = [];

@@ -67,9 +67,10 @@ for i = 1:length(t)
     tau(tau<-tau_max) = -tau_max;
     
     % Dynamic Model
-    M = [];
-    C = [];
-    G = [];
+    M = [M1*Lc1^2+M2*(l_1+Lc2*cos(X(2)))^2+I1+I2, 0 ; 0, M2*Lc2^2+I2];
+    C = [-2*M2*Lc2*sin(X(2))*(l_1+Lc2*cos(X(2)))*X_dot(1)*X_dot(2);...
+        M2*Lc2*sin(X(2))*(l_1+Lc2*cos(X(2)))*X_dot(1)^2];
+    G = [0;M2*g*Lc2*cos(X(2))];
 
     X_dot(i,:) = [];
     
