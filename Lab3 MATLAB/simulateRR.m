@@ -46,8 +46,8 @@ function [  ] = simulateRR(  )
     % [theta1 theta1' theta2 theta2']
 
     % Control Gains (Scalar)
-    K_p = 1;
-    K_v = 1;
+    K_p = 100;
+    K_v = 50;
 
     % Numerical Integration
     t = 0:dt:t_f;
@@ -97,8 +97,6 @@ function [  ] = simulateRR(  )
         u = zeros(2,length(t));
         u(2,i) = M2*[0;0;g]'*[0;0;sin(X(2,i))*Lc2];
         k = sum(k,1); u = sum(u,1);
-        disp(k)
-        disp(u)
         end
 
     end
@@ -115,7 +113,9 @@ function [  ] = simulateRR(  )
 
     % Plot Output
 
-
+plot(t,X(1,:))
+figure
+plot(t,X(3,:))
 
 
 
