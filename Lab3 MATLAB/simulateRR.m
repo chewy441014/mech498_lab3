@@ -132,8 +132,16 @@ function [  ] = simulateRR(  )
     xlabel('Time (sec)')
     figure;
     plot(t,X(1,:))
+    xlabel('Time (s)')
+    ylabel('Theta 1 position')
+    title('Theta 1 Position vs. Time')
+    
     figure
     plot(t,X(3,:))
+    xlabel('Time (s)')
+    ylabel('Theta 2 position')
+    title('Theta 2 position vs. Time')
+    
 
 end
 
