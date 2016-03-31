@@ -57,7 +57,6 @@ function [  ] = simulateRR(  )
     for i = 1:length(t)
         if i == 1
             X(:,1)=X_0;
-%             break
         else
             %Use X calculated from previous calculation
 
@@ -91,9 +90,6 @@ function [  ] = simulateRR(  )
         end
 
         % Plot Energy
-<<<<<<< HEAD
-        end
-=======
         %ki = 1/2 mi v_ci' v_ci + 1/2 1w1' ci I i 1w1
         %ui = -mi 0g' 0Pci + uref
         k = zeros(2,length(t));
@@ -101,8 +97,10 @@ function [  ] = simulateRR(  )
         u = zeros(2,length(t));
         u(2,i) = M2*[0;0;g]'*[0;0;sin(X(2,i))*Lc2];
         k = sum(k,1); u = sum(u,1);
+        disp(k)
+        disp(u)
+        end
 
->>>>>>> origin/master
     end
 
     joint_angles1=X(1,:);
