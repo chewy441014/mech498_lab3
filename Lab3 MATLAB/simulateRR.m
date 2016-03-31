@@ -130,7 +130,10 @@ function [  ] = simulateRR(  )
     plot(t,u(1,:)+u(2,:)+k(1,:)+k(2,:))
     ylabel('Total Energy')
     xlabel('Time (sec)')
-
+    figure;
+    plot(t,X(1,:))
+    figure
+    plot(t,X(3,:))
 
 end
 
