@@ -46,14 +46,16 @@ function [  ] = simulateRR(  )
     % [theta1 theta1' theta2 theta2']
 
     % Control Gains (Scalar)
-    K_p = 1;
-    K_v = 1;
+    K_p = 100;
+    K_v = 50;
 
     % Numerical Integration
     t = 0:dt:t_f;
     X = zeros(4,length(t)); % initialize variable to hold state vector
     X_dot = zeros(4,length(t)); % initialize variable to hold state vector derivatives
     thetad=[0;pi/2];
+    u = zeros(2,length(t));
+    k = zeros(2,length(t));
     for i = 1:length(t)
         if i == 1
             X(:,1)=X_0;
@@ -92,13 +94,9 @@ function [  ] = simulateRR(  )
         % Plot Energy
         %ki = 1/2 mi v_ci' v_ci + 1/2 1w1' ci I i 1w1
         %ui = -mi 0g' 0Pci + uref
-        k = zeros(2,length(t));
         k(:,i) = 1/2*X_dot([1,3],i)'*M*X_dot([1,3],i);
-        u = zeros(2,length(t));
-        u(2,i) = M2*[0;0;g]'*[0;0;sin(X(2,i))*Lc2];
-        k = sum(k,1); u = sum(u,1);
-        disp(k)
-        disp(u)
+        u(2,i) = M2*[0;0;g]'*[0;0;sin(X(3,i))*Lc2];
+        
         end
 
     end
@@ -114,9 +112,24 @@ function [  ] = simulateRR(  )
     end
 
     % Plot Output
-
-
-
+    figure;
+    subplot(5,1,1)
+    plot(t,k(1,:))
+    ylabel('KE \theta_1')
+    title('Energy Plots')
+    subplot(5,1,2)
+    plot(t,u(1,:))
+    ylabel('PE \theta_1')
+    subplot(5,1,3)
+    plot(t,k(2,:))
+    ylabel('KE \theta_2')
+    subplot(5,1,4)
+    plot(t,u(2,:))
+    ylabel('PE \theta_2')
+    subplot(5,1,5)
+    plot(t,u(1,:)+u(2,:)+k(1,:)+k(2,:))
+    ylabel('Total Energy')
+    xlabel('Time (sec)')
 
 
 end
