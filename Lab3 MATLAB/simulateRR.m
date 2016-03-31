@@ -92,8 +92,6 @@ function [  ] = simulateRR(  )
         end
 
         % Plot Energy
-        %ki = 1/2 mi v_ci' v_ci + 1/2 1w1' ci I i 1w1
-        %ui = -mi 0g' 0Pci + uref
         k(:,i) = 1/2*X_dot([1,3],i)'*M*X_dot([1,3],i);
         u(2,i) = M2*[0;0;g]'*[0;0;sin(X(3,i))*Lc2];
         
