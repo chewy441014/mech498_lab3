@@ -53,8 +53,11 @@ for i = 1:length(t)
         disp('Something fucked up')
     end
     
-    [is_solution, joint_angles] = robIK(pos, [0, 0, 0], rob);
-    
+    if i > 1
+        [is_solution, joint_angles] = robIK(pos, joint_angles_mat(:,i-1), rob);
+    else
+        [is_solution, joint_angles] = robIK(pos, [0 0 0], rob);
+    end
     if ~is_solution
         error('Inverse Kinematics returned "Not a solution".')
     end
