@@ -47,7 +47,7 @@ for i = 1:length(t)
         pos = path_cart_1(:,i);
     elseif i > 1001 && i <= 2001
         pos = path_cart_2(:,i-1001);
-    elseif i > 2001
+    elseif i > 2001 && i <= 3001
         pos = path_cart_3(:,i-2001);
     else
         disp('Something fucked up')

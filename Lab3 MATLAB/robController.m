@@ -37,8 +37,8 @@ end
 
 % Gravity Compensation Control
 
-K_p = [800;800;800]; % Proportional gain matrix containing gains K_p1 to K_p3
-K_v = [200;200;200]; % Derivative gain matrix containing gains K_v1 to K_v3
+K_p = [3000;3000;3000]; % Proportional gain matrix containing gains K_p1 to K_p3
+K_v = [300;300;300]; % Derivative gain matrix containing gains K_v1 to K_v3
 
 tau = -K_p.*(Theta-Theta_ref)-K_v.*(Theta_dot-Theta_dot_ref)+G; % control input (torque)
 
