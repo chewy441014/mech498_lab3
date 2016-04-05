@@ -24,8 +24,13 @@ l3 = rob.parameters.l3/1000;
 ...
     
 % Gravity Compensation Vector
-G = [0;m2*g*l2/2*cos(Theta(2))+m3*g*l2*cos(Theta(2))+ m4*g*l2*cos(Theta(2));...
-    m3*g*l3/2*cos(Theta(3))+m4*g*l3*cos(Theta(3))]; %[3x1] vector
+G2=m2*g*l2/2*cos(Theta(2))+...
+    m3*g*l2*cos(Theta(2))+m3*g*l3/2*cos(Theta(2)+Theta(3))+...
+    m4*g*l2*cos(Theta(2))+m4*g*l3*cos(Theta(2)+Theta(3));
+
+G3=m3*g*l3/2*cos(Theta(2)+Theta(3))+m4*g*l3*cos(Theta(2)+Theta(3));
+
+G = [0;G2;G3]; %[3x1] vector
 
 % Trajectory interpolation (DO NOT CHANGE)
 Theta_ref = zeros(3,1);
