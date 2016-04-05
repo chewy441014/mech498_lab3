@@ -14,10 +14,16 @@ function [ tau ] = robController( trajectory, Theta, Theta_dot, t , rob )
 
 % Robot Parameters from rob
 g = rob.parameters.g;
+m1 = rob.parameters.m1;
+m2 = rob.parameters.m2;
+m3 = rob.parameters.m3;
+l1 = rob.parameters.l1;
+l2 = rob.parameters.l2;
+l3 = rob.parameters.l3;
 ...
     
 % Gravity Compensation Vector
-G = [0;0;g]; %[3x1] vector
+G = [0;-m2*g*l2/2*cos(Theta(2))-m3*g*l2*cos(Theta(2));-m3*g*l3/2*cos(Theta(3))]; %[3x1] vector
 
 % Trajectory interpolation (DO NOT CHANGE)
 Theta_ref = zeros(3,1);
@@ -29,8 +35,8 @@ end
 
 % Gravity Compensation Control
 
-K_p = [1000;1000;1000]; % Proportional gain matrix containing gains K_p1 to K_p3
-K_v = [200;200;200]; % Derivative gain matrix containing gains K_v1 to K_v3
+K_p = [1200;1200;1200]; % Proportional gain matrix containing gains K_p1 to K_p3
+K_v = [600;600;600]; % Derivative gain matrix containing gains K_v1 to K_v3
 
 tau = -K_p.*(Theta-Theta_ref)-K_v.*(Theta_dot-Theta_dot_ref)+G; % control input (torque)
 
